@@ -34,10 +34,20 @@ body {
       @include flexbox(start);
       @include text-style(14, $primary);
       font-weight: 700;
+      width: 100%;
     }
 
     .avatar-24 {
+      flex-grow: 0; // 아바타는 고정
+      flex-shrink: 0; // 이름이 길어질경우 아바타 자동축소를 막음 (기본값 : 1)
       margin-right: 8px;
+    }
+
+    .username {
+      flex-grow: 1; // 나머지 영역은 이름이 차지
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; // 자동줄바꿈 금지
     }
   }
 
