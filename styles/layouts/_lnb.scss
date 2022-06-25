@@ -1,13 +1,20 @@
 .lnb {
+  $lnb-link-padding: 8px;
+  $grid-margin: $sm-margin + $gutter / 2;
+
   overflow-x: auto; // 320px(=100vw) 스크롤 <- overflow: auto; <- "320px 보다 가로가 더 긴 요소"
   &::-webkit-scrollbar {
     display: none;
   }
   &-list {
-    @include inline-flexbox(start);
+    @include inline-flexbox(
+      start
+    ); // block 부모의 컨탠츠, inline-block 자신의 컨텐츠 값을 width로 잡는다
     white-space: nowrap; // 한줄유지
-    position: relative;
-    left: -8px;
+    padding: 0 #{$grid-margin - $lnb-link-padding};
+    margin-left: -#{$grid-margin};
+    height: 40px;
+    border-bottom: 1px solid $border;
     // width: max-content; // 자식들의 가질수 있는 최대사이즈 계산 (호환성이슈)
   }
   &-item {
@@ -16,19 +23,16 @@
     &.is-active {
       a {
         color: $blue;
-        border-bottom: 2px solid $blue;
+        border-bottom-color: $blue;
       }
     }
     a {
       @include inline-flexbox;
       @include text-style(13, $dark);
       height: 40px;
-      padding: 0 8px;
+      padding: 0 $lnb-link-padding;
       font-weight: 700;
-
-      .ic-new {
-        color: $red;
-      }
+      border-bottom: 2px solid transparent;
     }
   }
 }
