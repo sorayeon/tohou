@@ -2,10 +2,9 @@
   $lnb-link-padding: 8px;
   $grid-margin: $sm-margin + $gutter / 2;
 
+  @include no-scrollbar;
   overflow-x: auto; // 320px(=100vw) 스크롤 <- overflow: auto; <- "320px 보다 가로가 더 긴 요소"
-  &::-webkit-scrollbar {
-    display: none;
-  }
+
   &-list {
     @include inline-flexbox(
       start
