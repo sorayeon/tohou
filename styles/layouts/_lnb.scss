@@ -1,12 +1,10 @@
 .lnb {
-  $lnb-height-sm: 40px;
-  $lnb-height-md: 50px;
-
   $lnb-link-padding: 8px;
   $grid-margin: $sm-margin + $gutter / 2;
 
   @include no-scrollbar;
   overflow-x: auto; // 320px(=100vw) 스크롤 <- overflow: auto; <- "320px 보다 가로가 더 긴 요소"
+  background-color: $white;
 
   &-list {
     @include inline-flexbox(
