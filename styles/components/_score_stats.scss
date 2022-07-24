@@ -1,6 +1,6 @@
 .score-stats {
   &-list {
-    display: inline-block;
+    display: inline-block; // 가운데 정렬을 위해 컨텐츠 size만큼만 영역을 잡음
   }
 
   &-item {
@@ -44,6 +44,21 @@
 
       .count {
         font-weight: 400;
+      }
+    }
+  }
+
+  @include responsive(T) {
+    &-item {
+      dt {
+        margin-right: 8px;
+      }
+
+      dd {
+        .bar-graph {
+          width: 180px;
+          margin-right: 8px;
+        }
       }
     }
   }
