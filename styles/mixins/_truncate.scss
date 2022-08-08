@@ -1,0 +1,5 @@
+@mixin truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis; // ...
+  white-space: nowrap; // 자동줄바꿈 금지
+}

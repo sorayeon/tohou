@@ -57,10 +57,8 @@
     }
 
     .username {
+      @include truncate;
       flex-grow: 1; // 나머지 영역은 이름이 차지
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap; // 자동줄바꿈 금지
     }
   }
 
