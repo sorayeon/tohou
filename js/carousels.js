@@ -17,6 +17,8 @@ const userGallery = tns({
   gutter: 4, // 이미지 간격
   edgePadding: 16,
   loop: false,
+  navContainer: '.user-gallery .thumbnail-list',
+  navAsThumbnails: true,
   arrowKeys: true,
   mouseDrag: true,
   responsive: {
