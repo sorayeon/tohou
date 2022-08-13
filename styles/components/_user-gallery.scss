@@ -3,7 +3,48 @@
   overflow: hidden;
 
   &-slider {
+    position: relative;
     margin-bottom: 4px;
+  }
+
+  &-controls {
+    @include flexbox(between);
+    @include pos-center;
+    width: 100%;
+    padding: 0 52px;
+
+    .control-button {
+      @include flexbox;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 28px;
+      background-color: $white;
+      color: $primary;
+      transition: background-color 100ms ease-in-out, color 100ms ease-in-out;
+
+      &.is-prev {
+        i {
+          margin-left: -2px;
+          transform: rotate(90deg);
+        }
+      }
+      &.is-next {
+        i {
+          margin-right: -2px;
+          transform: rotate(-90deg);
+        }
+      }
+
+      &:hover {
+        background-color: $blue;
+        color: $white;
+      }
+
+      &[disabled] {
+        visibility: hidden;
+      }
+    }
   }
 
   .thumbnail-list {

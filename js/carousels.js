@@ -13,10 +13,11 @@ const productCarousel = tns({
 
 const userGallery = tns({
   container: '.user-gallery .slider-list',
-  controls: false,
   gutter: 4, // 이미지 간격
   edgePadding: 16,
   loop: false,
+  controls: false,
+  controlsContainer: '.user-gallery-controls',
   navContainer: '.user-gallery .thumbnail-list',
   navAsThumbnails: true,
   arrowKeys: true,
