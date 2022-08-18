@@ -15,6 +15,12 @@
     flex-shrink: 0; // 정의된 사이즈를 지켜라
     width: 72px;
     margin-right: 4px;
+
+    &.is-active {
+      i {
+        color: $blue;
+      }
+    }
     i {
       font-size: 24px;
       color: $primary;
