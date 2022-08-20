@@ -1,0 +1,49 @@
+.cart-modal {
+  @include pos-center(fixed);
+  width: calc(100vw - #{$grid-margin * 2});
+  max-width: 360px;
+  padding: 40px 24px;
+  overflow: hidden;
+  border-radius: 8px;
+  text-align: center;
+  background-color: $white;
+  z-index: $cart-modal-level;
+  display: none;
+
+  &.is-open {
+    display: block;
+  }
+
+  &-title {
+    @include text-style(16, $dark);
+    margin-bottom: 24px;
+  }
+
+  .button-group {
+    @include column-flexbox;
+    & :first-child {
+      margin-bottom: 8px;
+    }
+
+    a,
+    button {
+      width: 100%;
+    }
+  }
+
+  @include responsive(D) {
+    padding-left: 32px;
+    padding-right: 32px;
+    &-title {
+      @include text-style(18);
+      margin-bottom: 16px;
+    }
+    .button-group {
+      a,
+      button {
+        @include text-style(18);
+        height: 55px;
+      }
+    }
+  }
+}
