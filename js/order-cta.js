@@ -24,3 +24,29 @@ function closeOrderFormModal() {
 orderCtaBuyButton.addEventListener('click', openOrderFormModal);
 
 orderFormModalOverlay.addEventListener('click', closeOrderFormModal);
+
+function toggleOrderCtaBookmark() {
+  // 1. 버튼 is-active 클래스 추가
+  // 2. 자식요소 icon 클래스 변경 -> ic-bookmark vs. ic-bookmark-filled
+  // 3. 카운트 숫자 값을 변경
+  const [icon, countSpan] = this.children;
+  const count = Number(countSpan.innerHTML.replaceAll(',', ''));
+
+  let newCount = count;
+
+  if (this.classList.contains('is-active')) {
+    // 활성화 된 상태이니 -> 비활성화 (ic-bookmark)
+    icon.classList.replace('ic-bookmark-filled', 'ic-bookmark');
+    --newCount;
+  } else {
+    // 비활성화 된 상태이니 -> 활성화 (ic-bookmark-filled)
+    icon.classList.replace('ic-bookmark', 'ic-bookmark-filled');
+    ++newCount;
+  }
+
+  countSpan.innerHTML = newCount.toLocaleString();
+  countSpan.setAttribute('aria-label', `북마크 ${newCount.toLocaleString()}회`);
+  this.classList.toggle('is-active');
+}
+
+orderCtaBookmarkButton.addEventListener('click', toggleOrderCtaBookmark);
