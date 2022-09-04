@@ -54,21 +54,18 @@
     'product-shipment',
     'product-recommendation',
   ];
+
   const productTabPanelList = productTabPanelIdList.map((tabPanelId) =>
     document.querySelector(`#${tabPanelId}`),
   );
+
+  // 각 tabPanel y축 위치 저장 변수
   const productTabPanelPositionMap = {};
 
+  // load, resize => tab panel 포지션 찾기
   function detectTabPanelPosition() {
     // 각각의 tabPanel의 y축 위치를 찾는다
     // productTabPanelPositionMap에 그 값을 업데이트
-    // {
-    // product-spec: 1000,
-    // product-review: 5000,
-    // product-inquiry: 7000,
-    // product-shipment: 8000,
-    // product-recommendation: 10000
-    // }
     productTabPanelList.forEach((panel) => {
       // id
       const id = panel.getAttribute('id');
@@ -76,9 +73,44 @@
       const position = window.scrollY + panel.getBoundingClientRect().top;
       productTabPanelPositionMap[id] = position;
     });
-    console.log(productTabPanelPositionMap['product-spec']);
+  }
+
+  // scroll
+  function updateActiveTabOnScroll() {
+    // 스크롤 위치에 따라서 activeTab 업데이트
+    // 1. 현재 유저가 얼마만큼 스크롤을 하느냐 => window.scrollY
+    // 2. 각 tabPanel y축 위치 => productTabPanelPositionMap
+
+    const scrolledAmount =
+      window.scrollY +
+      (window.innerWidth >= 768
+        ? TOP_HEADER_DESKTOP + 80
+        : TOP_HEADER_MOBILE + 8);
+
+    let newActiveTab;
+    if (
+      scrolledAmount >= productTabPanelPositionMap['product-recommendation']
+    ) {
+      newActiveTab = productTabButtonList[4]; // 추천 버튼
+    } else if (
+      scrolledAmount >= productTabPanelPositionMap['product-shipment']
+    ) {
+      newActiveTab = productTabButtonList[3]; // 배송/환불 버튼
+    } else if (
+      scrolledAmount >= productTabPanelPositionMap['product-inquiry']
+    ) {
+      newActiveTab = productTabButtonList[2]; // 문의 버튼
+    } else if (scrolledAmount >= productTabPanelPositionMap['product-review']) {
+      newActiveTab = productTabButtonList[1]; // 리뷰 버튼
+    } else {
+      newActiveTab = productTabButtonList[0]; // 상품정보 버튼
+    }
+    if (newActiveTab) {
+      activeProductTab.call(newActiveTab);
+    }
   }
 
   window.addEventListener('load', detectTabPanelPosition);
   window.addEventListener('resize', detectTabPanelPosition);
+  window.addEventListener('scroll', updateActiveTabOnScroll);
 })();
