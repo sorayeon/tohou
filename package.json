@@ -4,12 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sass": "node-sass -wr --source-map true styles/main.scss style.css"
+    "sass": "node-sass -wr --source-map true styles/main.scss style.css",
+    "sass:build": "node-sass -r styles/main.scss style.css",
+    "build": "npm run sass:build && node ./scripts/build.js",
+    "deploy": "npm run sass:build && npm run build && node ./scripts/deploy.js"
   },
   "keywords": [],
   "author": "sorayeon",
   "license": "ISC",
   "devDependencies": {
-    "node-sass": "^7.0.1"
+    "autoprefixer": "^10.4.8",
+    "cssnano": "^5.1.13",
+    "fs-extra": "^10.1.0",
+    "gh-pages": "^4.0.0",
+    "imagemin": "^8.0.1",
+    "imagemin-jpegtran": "^7.0.0",
+    "node-sass": "^7.0.1",
+    "postcss": "^8.4.16"
   }
 }
